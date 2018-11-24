@@ -15,7 +15,7 @@ $(document).ready(function () {
                 ['sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'leaf', 'leaf', 'leaf', 'sky', 'sky'],
                 ['sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'leaf', 'leaf', 'leaf', 'sky', 'sky'],
                 ['sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'tree', 'sky', 'sky', 'sky'],
-                ['sky', 'sky', 'sky', 'sky', 'leaf', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'tree', 'sky', 'sky', 'sky'],
+                ['sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'tree', 'sky', 'sky', 'sky'],
                 ['sky', 'sky', 'sky', 'leaf', 'leaf', 'leaf', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'sky', 'rock', 'rock', 'sky', 'tree', 'sky', 'sky', 'rock'],
                 ['grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass', 'grass'],
                 ['dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt', 'dirt'],
@@ -114,7 +114,7 @@ $(document).ready(function () {
             }
         }
 
-        clearSelectedTileTool() {
+        clearSelectedTileTool(){
             //clear selected tool tile
             var classToRemove = $("#selectedTile").attr('data');
             $("#selectedTile").removeAttr('data');
@@ -126,12 +126,12 @@ $(document).ready(function () {
 
         setCurrentTool(newTool) {
             //firt check selected tile isn't empty
-            if (newTool === 'selectedTile' && $("#selectedTile").attr('data') == null) {
+            if (newTool ==='selectedTile' && $("#selectedTile").attr('data') ==null){
                 return;
             }
 
             this.currentTool = newTool;
-            var selectedTool = newTool;
+            var selectedTool = handler.target.id;
             $('.tool').removeClass('selectedTool');
             if (selectedTool != 'selectedTile') {
                 $('#' + selectedTool).addClass('selectedTool');
@@ -143,12 +143,17 @@ $(document).ready(function () {
             $('#' + toolSelection).addClass('invalidSelection');
             setTimeout(function () {
                 $('#' + toolSelection).removeClass('invalidSelection');
-            }, 250);
+            }, 300);
         }
 
 
 
         initGame() {
+            //clear html box 
+            //reset all variables
+
+            //paint game on screen
+
             var gridContainer = $('#grid-container');
             for (var i = 0; i < 20; i++) {
                 for (var j = 0; j < 20; j++) {
@@ -156,6 +161,7 @@ $(document).ready(function () {
                     tile.addClass('grid-item');
                     tile.addClass(this.defMatrix[i][j]);
                     tile.attr('data', this.defMatrix[i][j]);
+                    //.click(mineCraft.clickBlock);
                     gridContainer.append(tile);
 
                 }
